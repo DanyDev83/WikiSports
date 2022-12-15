@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition d'un article - {% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="mt-4">
+            <h4 class="title display-5">
+                Edition de l'article N° {{ article.id }}
+            </h4>
+        </div>
+    </div>
+    <hr>
+    <div class="row form">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            {{ form_start(formEditArticle) }}
+            {% if formEditArticle is rootform %}
+                {{ form_errors(formEditArticle) }}
+            {% endif %}
+            {{ form_row(formEditArticle.title) }}
+            {{ form_row(formEditArticle.content) }}
+            {{ form_row(formEditArticle.urlPicture) }}
+            {{ form_row(formEditArticle.category) }}
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2 mt-5">
+                {{ form_row(formEditArticle.publier, { 'label': 'Modifier' }) }}
+            </div>
+            {{ form_end(formEditArticle) }}
+        </div>
+    </div>
+{% endblock %}

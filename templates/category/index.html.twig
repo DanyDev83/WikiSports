@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories - {% endblock %}
+
+{% block body %}
+    <main id="categories" class="container">
+        <h2 class="row justify-content-center py-5">Découvrez toutes nos catégories sportives</h2>
+        <ul class="row justify-content-between">
+            {% for category in categories %}
+                <li class="card col-3 px-0 mx-5 mb-5">
+                    <div class="card-header titleHome pb-0" width="100%">
+                        <h3><a class="row justify-content-center text-decoration-none text-dark" href="{{ path('app_category', {'id': category.id }) }}">{{ category.name }}</a></h3>
+                    </div>
+                    <div class="card-body px-0 py-0">
+                        <img src="{{ category.urlPicture }}" class="imgCard mb-2" alt="" width="100%">
+                        <p class="px-2">{{ category.description|u.truncate(300) }}[...]</p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="row justify-content-center">Cette catégorie compte {{ category.nbArticles }} article(s)</p>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+{% endblock %}

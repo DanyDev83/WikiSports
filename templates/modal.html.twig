@@ -1,0 +1,18 @@
+{% if error is defined and error != null %}
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content text-danger">
+                <div class="modal-header">
+                    <h5 class="modal-title">Error {{ statut }}</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Page : {{ error }}</p>
+                    <p>{{ message }}</p>
+                </div>
+                <a href="{{ path('app_home') }}" type="button" class="btn btn-success">Retourner à l'accueil</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="{{ asset('js/modal.js') }}"></script>
+{% endif %}

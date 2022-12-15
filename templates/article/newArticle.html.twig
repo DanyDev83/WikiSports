@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création d'un article - {% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="mt-4">
+            <h4 class="title display-5">
+                Création d'un article
+            </h4>
+        </div>
+    </div>
+    <hr>
+    <div class="row form">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            {{ form_start(formAddArticle) }}
+            {% if formAddArticle is rootform %}
+                {{ form_errors(formAddArticle) }}
+            {% endif %}
+            {{ form_row(formAddArticle.title) }}
+            {{ form_row(formAddArticle.content) }}
+            {{ form_row(formAddArticle.urlPicture) }}
+            {{ form_row(formAddArticle.category) }}
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2 mt-5">
+                {{ form_row(formAddArticle.publier) }}
+            </div>
+            {{ form_end(formAddArticle) }}
+        </div>
+    </div>
+{% endblock %}

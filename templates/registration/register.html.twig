@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+    <div class="row">
+        <div class="p-5 bg-warning text-white">
+            <h1 class="text-dark">WikiSports</h1>
+        </div>
+
+        {% include "navbar.html.twig" %}
+
+        <div class="row">
+            <div class="mt-4">
+                <h4 class="title display-5">
+                    Inscription
+                </h4>
+            </div>
+        </div>
+        <hr>
+        <div class="row form">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                {{ form_start(formRegistration) }}
+                <div class="text-danger mb-2">
+                    {{ form_errors(formRegistration) }}
+                </div>
+                {{ form_row(formRegistration.username) }}
+                {{ form_row(formRegistration.email) }}
+                {{ form_row(formRegistration.plainPassword) }}
+                {{ form_row(formRegistration.agreeTerms) }}
+                {{ form_row(formRegistration.submit) }}
+                {{ form_end(formRegistration) }}
+            </div>
+        </div>
+
+        {% include "footer.html.twig" %}
+    </div>
+{% endblock %}

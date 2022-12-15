@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ category.name }} - {% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+
+        <main id="oneCategory" class="container">
+        <h2 class="row justify-content-center py-5">Sports {{ category.name }}</h2>
+        <ul>
+            {% for article in articles %}
+                <li class="card col-3 px-0">
+                    <div class="card-header pb-0" width="100%">
+                        <h3><a class="row justify-content-center text-decoration-none text-dark" href="{{ path('app_article', {'id': article.id }) }}">{{ article.title }}</a></h3>                                         
+                    </div>
+                    <div class="card-body px-0 py-0">
+                        <img src="{{ article.urlPicture }}" class="imgCard mb-2" alt="" width="100%">   
+                        <p class="px-2">{{ article.content|u.truncate(100) }}[...]</p>  
+                    </div>   
+                </li>
+                {% endfor %}
+            </ul>
+        </main>
+
+    </div>
+{% endblock %}

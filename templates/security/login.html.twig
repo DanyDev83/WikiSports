@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion - {% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="mt-4">
+            <h4 class="title display-5">
+                Connexion
+            </h4>
+        </div>
+    </div>
+    <hr>
+    <div class="row form">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            {{ form_start(formLogin) }}
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+            {{ form_row(formLogin.email) }}
+            {{ form_row(formLogin.password) }}
+            {{ form_row(formLogin.submit) }}
+            {{ form_end(formLogin) }}
+        </div>
+    </div>
+{% endblock %}

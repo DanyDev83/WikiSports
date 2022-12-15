@@ -1,0 +1,15 @@
+{# {% block title %}Accueil - {% endblock %} #}
+
+{% block body %}
+    <nav>
+        <h1 class="menu-title">Dashboard</h1>
+        <ul>
+            <li class="menu-item">Categories</li>
+            <ul>
+                {% for category in categories %}
+                    <li class="menu-sub-item">{% category.title %}</li>
+                {% endfor %}
+            </ul>
+        </ul>
+    </nav>
+{% endblock %}

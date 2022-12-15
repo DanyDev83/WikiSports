@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - {% endblock %}
+
+{% block body %}
+    <main class="container">
+        <h2 class="row justify-content-center my-5"> Bienvenue sur WikiSports. Venez lire, écrire, partager des articles sur tous vos sports préférés !</h2>
+        <hr>
+
+        <div class="row">
+            <div class="col-7">
+                <h3 class="row justify-content-center my-4">Venez découvrir nos articles</h3>
+                {% for article in randomArticles %}
+                    <div class="card px-0 mb-3">
+                        <div class="card-header titleHome pb-0">
+                            <h4><a class="row justify-content-center text-decoration-none text-dark"
+                            href="{{ path('app_article', {'id': article.id }) }}">{{ article.title }}</a></h4>
+                        </div>
+                        <div class="card-body d-flex px-0 py-0">
+                            <p class="px-2 my-3">{{ article.content|u.truncate(500) }}[...]</p>
+                            <img src="{{ article.urlPicture }}" class="imgRandomArticle imgCard" alt={{ article.title }}>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="col-1"></div>
+
+            <div class="col-4">
+                <h3 class="row justify-content-center my-4">Découvrez nos catégories</h3>
+                {% for category in randomCategories %}
+                    <div class="card px-0 mb-3">
+                        <div class="card-header titleHome pb-0">
+                            <h4><a class="row justify-content-center text-decoration-none text-dark" href="{{ path('app_category', {'id': category.id }) }}">{{ category.name }}</a></h4>
+                        </div>
+                        <div class="card-body px-0 py-0 my-0">
+                            <img src="{{ category.urlPicture }}" class="imgCard mb-2" alt="" width="100%">
+                            <p class="px-2">{{ category.description|u.truncate(300) }}[...]</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+
+  {% include "modal.html.twig" %}
+
+{% endblock %}

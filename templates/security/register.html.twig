@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription - {% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="mt-4">
+            <h4 class="title display-5">
+                Inscription
+            </h4>
+        </div>
+    </div>
+    <hr>
+    <div class="row form">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            {{ form_start(formRegistration) }}
+            <div class="text-danger mb-2">
+                {{ form_errors(formRegistration) }}
+            </div>
+            {{ form_row(formRegistration.username) }}
+            {{ form_row(formRegistration.email) }}
+            {{ form_row(formRegistration.plainPassword) }}
+            {{ form_row(formRegistration.agreeTerms) }}
+            {{ form_row(formRegistration.submit) }}
+            {{ form_end(formRegistration) }}
+        </div>
+    </div>
+{% endblock %}

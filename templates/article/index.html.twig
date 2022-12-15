@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.title }} - {% endblock %}
+
+{% block body %}
+    <main class="container" >
+        <div class="row content">
+
+        <article class="mt-5 col-sm-8">
+            <h2>{{ article.title }}</h2>
+            <hr>
+            <div class="mt-4">
+                <img src="{{ article.urlPicture }}" class="img-article ps-3 pb-3" alt="">
+                <p class="article-content">{{ article.content }}</p>
+            </div>
+        </article>
+
+        <aside class="col-sm-4 mt-5 px-3">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <h4>Informations sur l'article</h4>
+                </div>
+                <div class="card-body">
+                    <p>Auteur : {{ article.user.username }}</p>
+                    <p>Catégorie de l'article : <a href="{{ path('app_category', {'id': article.category.id }) }}">{{ article.category.name }}</a> </p>
+                    <p>Date de création :  {{ article.CreatedAt|date("d/m/Y") }}</p>
+                    <p>Dernière modification : {{ article.UpdatedAt|date("d/m/Y") }}</p>
+                    {% if app.user and app.user.email == article.user.email %}
+                        <div class="d-flex mt-4 justify-content-center">
+                            <a href="{{ path('app_editArticle', {'id': article.id }) }}" type="button" class="btn btn-info me-4">Modifier</a>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">Supprimer</button>
+                        </div>
+                        <div class="modal" id="myModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Confirmation de suppression</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Voulez-vous vraiment supprimer l'article n°{{ article.id }}</p> 
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Non</button>
+                                        <a href="{{ path('app_deleteArticle', {'id': article.id }) }}" type="button" class="btn btn-success">Oui</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </aside>
+        </div>
+    </main>
+{% endblock %}

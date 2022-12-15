@@ -1,0 +1,9 @@
+<header class="container-fluid">
+    <div class="row">
+        <img id="banner" src="{{ asset('images/banner.png') }}" alt="bannière WikiSports">
+        <h1 id="title"><a class="text-white text-decoration-none" href="{{ path('app_home') }}">WikiSports</a></h1>
+
+        {{ render(controller('App\\Controller\\HomeController::navbar')) }}
+        
+    </div>
+</header>

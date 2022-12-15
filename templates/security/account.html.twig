@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ app.user.username }} - {% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="mt-4">
+            <h4 class="title display-5">
+                Mon compte
+            </h4>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-4">
+            <h4>Profil</h4>
+            <div class="card">
+                <div class="card-header"><span>Pseudo : {{ user.username }}<br>Email : {{ user.email }}</span></div>
+                <div class="card-body">Nombre d'articles : {{ nbArticles }}</div>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="card-footer">Administrateur : <span class="text-success">Oui</span></div>
+                {% else %}
+                    <div class="card-footer">Administrateur : <span class="text-danger">Non</span></div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+            <h4>Mes articles</h4>
+            <div class="card">
+                <div class="card-body">
+                    {% if nbArticles > 0 %}
+                        <ul class="list-group list-group-flush">
+                            {% for article in articles %}
+                                <li class="list-group-item"><a
+                                            href="{{ path('app_article', {id: article.id }) }}">{{ article.title }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <span class="text-danger">Vous n'avez aucun article</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
